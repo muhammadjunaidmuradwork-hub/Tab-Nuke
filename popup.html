@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TabNuke</title>
+  <!-- Import Inter Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Link Stylesheet -->
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-left">
+        <!-- Crisp Vector Inline Logo -->
+        <svg class="logo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="9" stroke="url(#logo-grad)" stroke-width="2.5" />
+          <path d="M16 8L8 16" stroke="url(#logo-grad)" stroke-width="2.5" stroke-linecap="round" />
+          <defs>
+            <linearGradient id="logo-grad" x1="4" y1="4" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#FF4444" />
+              <stop offset="1" stop-color="#8B5CF6" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="logo-title">TabNuke</span>
+      </div>
+      <button id="settings-toggle" class="icon-btn" title="Toggle Settings" aria-label="Settings">⚙️</button>
+    </header>
+
+    <!-- Settings Drawer (Collapsible) -->
+    <section id="settings-panel" class="settings-panel hidden">
+      <div class="settings-row">
+        <div class="setting-info">
+          <label for="auto-close-toggle" class="setting-title">Auto-close duplicates</label>
+          <span class="setting-description">Close duplicates immediately upon opening</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="auto-close-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="settings-row">
+        <div class="setting-info">
+          <label for="auto-close-previous-toggle" class="setting-title">Auto-close older duplicates</label>
+          <span class="setting-description">Close older duplicates and keep the newest one</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="auto-close-previous-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="settings-row">
+        <div class="setting-info">
+          <label for="badge-toggle" class="setting-title">Show badge count</label>
+          <span class="setting-description">Display duplicate counter on extension badge</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="badge-toggle">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+      <div class="stat-card">
+        <span id="exact-count" class="stat-number">0</span>
+        <span class="stat-label">Duplicates</span>
+      </div>
+      <div class="stat-card">
+        <span id="near-count" class="stat-number">0</span>
+        <span class="stat-label">Near-Dupes</span>
+      </div>
+      <div class="stat-card">
+        <span id="memory-saved" class="stat-number">0 MB</span>
+        <span class="stat-label">Memory Saved</span>
+      </div>
+    </section>
+
+    <!-- Main Clean-up Action -->
+    <section class="action-section">
+      <button id="kill-all-btn" class="kill-btn" disabled>
+        No Duplicates Found ✓
+      </button>
+    </section>
+
+    <!-- Scrollable Tab Lists -->
+    <main class="lists-container">
+      <!-- Exact Duplicates -->
+      <section class="list-section">
+        <div class="section-header">
+          <h2 class="section-title">Exact Duplicates</h2>
+          <span id="exact-badge" class="count-badge hidden">0</span>
+        </div>
+        <div id="exact-list" class="list-content">
+          <!-- Dynamically filled list -->
+        </div>
+      </section>
+
+      <!-- Near Duplicates -->
+      <section class="list-section">
+        <div class="section-header">
+          <h2 class="section-title">Same Site Tabs</h2>
+          <span id="near-badge" class="count-badge hidden">0</span>
+        </div>
+        <div id="near-list" class="list-content">
+          <!-- Dynamically filled list -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span class="footer-version">TabNuke v1.0.0</span>
+      <button id="footer-settings-link" class="link-btn">Settings</button>
+    </footer>
+  </div>
+
+  <!-- Load popup logic as ES module -->
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
