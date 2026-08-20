@@ -1,33 +1,65 @@
-# TabNuke Chrome Extension
+# TabNuke 🚀
 
-TabNuke is a Manifest V3 Chrome extension designed to nuke your duplicate tabs instantly. Clean browser, clear mind. It operates silently in the background while offering real-time cleanup operations, memory tracking, and configurable automation modes.
+> **Nuke your duplicate tabs instantly. Clean browser, clear mind.**
 
----
-
-## Key Features
-
-- **Duplicate Detection**: Categorizes tabs into Exact duplicates (identical URL matches) and Same Site tabs (matching domain but different URLs).
-- **Manual Cleanup**: Kill all duplicates instantly with a single button, or close specific tabs individually.
-- **Auto-Close duplicates**: Automatically closes newly opened duplicate tabs and shifts focus to the existing original tab.
-- **Auto-Close Older duplicates**: Automatically closes older duplicate tabs in the background, keeping the newest instance active.
-- **Visual Badge Counter**: Updates the extension badge in real time to show the count of duplicate tabs.
-- **System Notifications**: Alerts the user of background actions and manual cleanups through native operating system notifications.
-- **Memory Savings Tracker**: Displays estimated memory reclaimed from closed duplicate tabs (calculated at 50MB per tab).
-- **Premium Dark Design**: Features a styled, dark-themed user interface utilizing Inter typography, custom thin scrollbars, clear layout cards, and subtle hover animations.
+TabNuke is a Chrome Manifest V3 extension that helps you detect, organize, and remove duplicate browser tabs. It runs quietly in the background while providing real-time duplicate detection, cleanup tools, automation controls, and memory-saving statistics.
 
 ---
 
-## File Structure
+## ✨ Features
+
+### 🔍 Smart Duplicate Detection
+
+* Detects **exact duplicate tabs** with identical URLs.
+* Finds **same-site duplicate tabs** where multiple pages from the same domain are open.
+* Groups duplicate tabs into easy-to-review sections.
+
+### 🧹 One-Click Cleanup
+
+* Close all exact duplicates instantly.
+* Close individual duplicate tabs manually.
+* Keep the most recently active tab while removing extra tabs from the same website.
+
+### ⚡ Automatic Cleanup Modes
+
+Choose how TabNuke handles duplicates:
+
+* **Auto-close duplicates**
+
+  * Automatically closes newly opened duplicate tabs.
+  * Keeps the original tab active.
+
+* **Auto-close older duplicates**
+
+  * Keeps the newest tab.
+  * Removes older duplicate instances automatically.
+
+### 📊 Browser Optimization
+
+* Live duplicate counter badge.
+* Tracks estimated memory saved from closed tabs.
+* Sends system notifications after cleanup actions.
+
+### 🎨 Modern UI
+
+* Premium dark-themed interface.
+* Compact popup layout.
+* Smooth animations and clean tab cards.
+* Built with Inter typography and custom styling.
+
+---
+
+## 📁 Project Structure
 
 ```text
-dupekill/
-├── manifest.json       # Extension metadata and permission definitions
-├── background.js       # Background service worker handling events and tab removal
-├── utils.js            # Shared utility functions (grouping, domain parsing, memory formatting)
-├── popup.html          # HTML structure for the extension popup interface
-├── popup.css           # Custom dark theme styles
-├── popup.js            # Controller handling DOM interaction and message passing
-└── icons/              # Directory holding extension icon assets
+TabNuke/
+├── manifest.json       # Chrome extension configuration
+├── background.js       # Background service worker and tab management logic
+├── popup.html          # Extension popup interface
+├── popup.css           # Popup styling and theme
+├── popup.js            # Popup UI controller and interactions
+├── utils.js            # Shared helper functions
+└── icons/              # Extension icons
     ├── icon16.png
     ├── icon48.png
     └── icon128.png
@@ -35,27 +67,148 @@ dupekill/
 
 ---
 
-## Installation Instructions
+## 🛠️ Installation
 
-1. Open Google Chrome.
-2. Navigate to `chrome://extensions/` by typing it into the URL bar.
-3. Enable **Developer mode** using the toggle switch in the top-right corner.
-4. Click the **Load unpacked** button in the top-left corner.
-5. In the file picker dialog, select the `dupekill/` root workspace directory.
-6. The extension is now loaded and active.
+### Load Extension Locally
+
+1. Clone this repository:
+
+```bash
+git clone <repository-url>
+```
+
+2. Open Google Chrome.
+
+3. Navigate to:
+
+```text
+chrome://extensions/
+```
+
+4. Enable **Developer mode**.
+
+5. Click **Load unpacked**.
+
+6. Select the project folder.
+
+7. TabNuke will now appear in your Chrome extensions toolbar.
 
 ---
 
-## How to Use
+## 🚀 Usage
 
 ### Manual Cleanup
-1. Click the **TabNuke** icon in the extensions toolbar to open the popup.
-2. View the current count of duplicates, near-duplicates, and estimated memory saved in the stats bar.
-3. Click the primary **Kill Duplicates** button to close all exact duplicates at once, or click the individual close cross button (`×`) on a specific tab card.
-4. Click **Keep 1** on a same-site card to close all other tabs matching that domain, keeping the most recently active one.
 
-### Automation Toggles
-1. Open the popup and click the settings gear icon (`⚙️`) in the top-right corner.
-2. Toggle on **Auto-close duplicates** to immediately close new duplicate tabs and focus the existing original tab.
-3. Alternatively, toggle on **Auto-close older duplicates** to keep your newest tab open and close the older background instances automatically.
-4. Adjust the **Show badge count** switch to show or hide the duplicate count badge on the extension icon.
+1. Click the TabNuke extension icon.
+2. Review:
+
+   * Duplicate tabs
+   * Same-site tabs
+   * Estimated memory saved
+3. Use:
+
+   * **Kill Duplicates** to remove exact duplicates.
+   * Individual close buttons to remove selected tabs.
+   * **Keep 1** to keep one active tab per website.
+
+---
+
+## ⚙️ Settings
+
+Open the settings panel using the gear icon.
+
+Available options:
+
+| Setting                     | Description                                       |
+| --------------------------- | ------------------------------------------------- |
+| Auto-close duplicates       | Closes newly opened duplicate tabs automatically  |
+| Auto-close older duplicates | Removes older duplicates and keeps the newest tab |
+| Show badge count            | Displays duplicate count on the extension icon    |
+
+---
+
+## 🧩 How It Works
+
+TabNuke uses Chrome's Tabs API to monitor browser activity.
+
+The extension:
+
+1. Scans open tabs.
+2. Groups tabs by:
+
+   * Full URL for exact duplicates.
+   * Domain for same-site duplicates.
+3. Displays cleanup options.
+4. Removes selected duplicate tabs.
+5. Updates statistics and notifications.
+
+---
+
+## 🔐 Permissions
+
+TabNuke requires:
+
+| Permission      | Purpose                             |
+| --------------- | ----------------------------------- |
+| `tabs`          | Read and manage browser tabs        |
+| `storage`       | Save user settings and statistics   |
+| `windows`       | Focus browser windows after cleanup |
+| `notifications` | Display cleanup alerts              |
+
+---
+
+## 🧑‍💻 Development
+
+### Technologies
+
+* JavaScript (ES Modules)
+* HTML5
+* CSS3
+* Chrome Extension Manifest V3
+
+### Main Components
+
+* **background.js**
+
+  * Handles duplicate scanning.
+  * Manages tab events.
+  * Performs cleanup actions.
+
+* **popup.js**
+
+  * Controls the popup UI.
+  * Handles user interactions.
+  * Communicates with the background service worker.
+
+* **utils.js**
+
+  * Provides reusable helpers:
+
+    * Domain extraction
+    * URL grouping
+    * Memory formatting
+    * Text formatting
+
+---
+
+## 📌 Future Improvements
+
+Possible enhancements:
+
+* Memory usage estimation using browser performance APIs.
+* Duplicate tab history tracking.
+* Custom cleanup rules.
+* Sync settings across devices.
+* More browser support.
+
+---
+
+## 📄 License
+
+Add your preferred license here.
+
+---
+
+## ⭐ Support
+
+If you find TabNuke useful, consider starring the repository and sharing feedback.
